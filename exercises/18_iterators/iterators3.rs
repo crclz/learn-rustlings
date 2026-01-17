@@ -24,35 +24,31 @@ fn divide(a: i64, b: i64) -> Result<i64, DivisionError> {
 
 // TODO: Add the correct return type and complete the function body.
 // Desired output: `Ok([1, 11, 1426, 3])`
-fn result_with_list() -> Result<[i64; 4], DivisionError> {
+fn result_with_list() -> Result<Vec<i64>, DivisionError> {
     let numbers = [27, 297, 38502, 81];
     let division_results = numbers.into_iter().map(|n| divide(n, 27));
 
-    let mut result: [i64; 4] = [0; 4];
+    // let mut result = Vec::new();
 
-    for (i, r) in division_results.enumerate() {
-        match r {
-            Ok(number) => result[i] = number,
-            Err(e) => return Err(e),
-        }
-    }
+    // for r in division_results {
+    //     match r {
+    //         Ok(number) => result.push(number),
+    //         Err(e) => return Err(e),
+    //     }
+    // }
 
-    Ok(result)
+    // Ok(result)
+
+    division_results.collect()
 }
 
 // TODO: Add the correct return type and complete the function body.
 // Desired output: `[Ok(1), Ok(11), Ok(1426), Ok(3)]`
-fn list_of_results() -> [Result<i64, DivisionError>; 4] {
+fn list_of_results() -> Vec<Result<i64, DivisionError>> {
     let numbers = [27, 297, 38502, 81];
     let division_results = numbers.into_iter().map(|n| divide(n, 27));
 
-    let mut result: [Result<i64, DivisionError>; 4] = [Ok(0), Ok(0), Ok(0), Ok(0)];
-
-    for (i, r) in division_results.enumerate() {
-        result[i] = r
-    }
-
-    result
+    division_results.collect()
 }
 
 fn main() {
